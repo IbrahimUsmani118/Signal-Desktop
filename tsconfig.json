@@ -1,5 +1,6 @@
 {
-  "include": ["ts/**/*", "app/**/*", "package.json", "build/intl-linter/**/*"],
+  "include": ["ts/**/*", "app/**/*", "package.json", "build/intl-linter/**/*", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.cjs","global.d.ts"], 
+
   "compilerOptions": {
     /*
      * Visit https://aka.ms/tsconfig to read more about this file
@@ -226,7 +227,17 @@
     /* Skip type checking .d.ts files that are included with TypeScript. */
     // "skipDefaultLibCheck": true,
     /* Skip type checking all .d.ts files. */
-    "skipLibCheck": true
+    
+    "allowJs": true,
+    "skipLibCheck": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
 
   /**
@@ -238,5 +249,6 @@
       // Necessary for `ts-node` to work with CommonJS modules until we migrate to package.json#type: "module"
       "module": "CommonJS"
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }
