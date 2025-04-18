@@ -23,7 +23,6 @@ import type { WidthBreakpoint } from './_util';
 import type { CallLinkType } from '../types/CallLink';
 import type { CallStateType } from '../state/selectors/calling';
 import type { StartCallData } from './ConfirmLeaveCallModal';
-import { I18n } from './I18n';
 
 // Make sure this path matches your project structure:
 import { FilterTabView } from './FilterTabView';

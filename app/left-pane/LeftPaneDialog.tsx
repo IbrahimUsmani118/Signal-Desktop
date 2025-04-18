@@ -1,6 +1,5 @@
 // app/left-pane/LeftPaneDialog.tsx
 
-import React from 'react';
 import { LeftPaneMode } from '../constants/LeftPaneMode'; // adjust to your real path
 import { SmartFilterTab } from './LeftPaneFilterTab';
 import { InboxArchiveTab } from './InboxArchiveTab';

@@ -5,8 +5,6 @@
 
 Signal Desktop makes use of the following open source projects.
 
-<<<<<<< HEAD
-=======
 ## @aws-sdk/client-dynamodb
 
     Apache License
@@ -415,7 +413,6 @@ Signal Desktop makes use of the following open source projects.
     See the License for the specific language governing permissions and
     limitations under the License.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## @electron/asar
 
     Copyright (c) 2014 GitHub Inc.
@@ -475,8 +472,6 @@ Signal Desktop makes use of the following open source projects.
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## @hookform/resolvers
 
     MIT License
@@ -501,7 +496,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## @indutny/dicer
 
     Copyright Brian White. All rights reserved.
@@ -613,8 +607,6 @@ Signal Desktop makes use of the following open source projects.
     IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## @radix-ui/react-accordion
 
     MIT License
@@ -1243,7 +1235,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## @react-aria/focus
 
     Apache License
@@ -1680,8 +1671,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## @reduxjs/toolkit
 
     MIT License
@@ -1706,7 +1695,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## @signalapp/quill-cjs
 
     Copyright (c) 2017-2024, Slab
@@ -2453,8 +2441,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE
 
-<<<<<<< HEAD
-=======
 ## autoprefixer
 
     The MIT License (MIT)
@@ -2478,7 +2464,6 @@ Signal Desktop makes use of the following open source projects.
     IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
     CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## backbone
 
     Copyright (c) 2010-2024 Jeremy Ashkenas, DocumentCloud
@@ -2807,8 +2792,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## class-variance-authority
 
     Apache License
@@ -3002,7 +2985,6 @@ Signal Desktop makes use of the following open source projects.
     See the License for the specific language governing permissions and
     limitations under the License.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## classnames
 
     The MIT License (MIT)
@@ -3027,8 +3009,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## clsx
 
     MIT License
@@ -3065,7 +3045,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## config
 
     // Copyright 2010-2022, Loren West and other contributors
@@ -3100,13 +3079,10 @@ Signal Desktop makes use of the following open source projects.
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## crypto
 
     License: ISC
 
->>>>>>> 48e9ad314 (bootstrap)
 ## dashdash
 
     # This is the MIT license
@@ -3133,8 +3109,6 @@ Signal Desktop makes use of the following open source projects.
     TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## date-fns
 
     MIT License
@@ -3159,7 +3133,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## direction
 
     (The MIT License)
@@ -3185,40 +3158,10 @@ Signal Desktop makes use of the following open source projects.
     TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-## electron
-
-    Copyright (c) Electron contributors
-    Copyright (c) 2013-2020 GitHub Inc.
-
-    Permission is hereby granted, free of charge, to any person obtaining
-    a copy of this software and associated documentation files (the
-    "Software"), to deal in the Software without restriction, including
-    without limitation the rights to use, copy, modify, merge, publish,
-    distribute, sublicense, and/or sell copies of the Software, and to
-    permit persons to whom the Software is furnished to do so, subject to
-    the following conditions:
-
-    The above copyright notice and this permission notice shall be
-    included in all copies or substantial portions of the Software.
-
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-    EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-    NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-    LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-    OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-    WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-=======
->>>>>>> 5d9dcc506 (Message)
 ## embla-carousel-react
 
     License: MIT
 
->>>>>>> 48e9ad314 (bootstrap)
 ## emoji-datasource
 
     The MIT License (MIT)
@@ -3476,13 +3419,10 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## fs
 
     License: ISC
 
->>>>>>> 48e9ad314 (bootstrap)
 ## fs-extra
 
     (The MIT License)
@@ -3964,8 +3904,6 @@ Signal Desktop makes use of the following open source projects.
 
     For more information, please refer to <https://unlicense.org/>
 
-<<<<<<< HEAD
-=======
 ## i18next
 
     The MIT License (MIT)
@@ -4018,7 +3956,6 @@ Signal Desktop makes use of the following open source projects.
 
     License: MIT
 
->>>>>>> 48e9ad314 (bootstrap)
 ## intl-tel-input
 
     The MIT License (MIT)
@@ -4364,8 +4301,6 @@ Signal Desktop makes use of the following open source projects.
     ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
     IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## lucide-react
 
     ISC License
@@ -4384,7 +4319,6 @@ Signal Desktop makes use of the following open source projects.
     ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
     OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## memoizee
 
     ISC License
@@ -4455,8 +4389,6 @@ Signal Desktop makes use of the following open source projects.
     (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
     SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-<<<<<<< HEAD
-=======
 ## next
 
     The MIT License (MIT)
@@ -4505,7 +4437,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## node-fetch
 
     The MIT License (MIT)
@@ -4600,8 +4531,6 @@ Signal Desktop makes use of the following open source projects.
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## path
 
     Copyright Joyent, Inc. and other Node contributors. All rights reserved.
@@ -4623,7 +4552,6 @@ Signal Desktop makes use of the following open source projects.
     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
     IN THE SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## pify
 
     MIT License
@@ -5191,8 +5119,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## react-day-picker
 
     The MIT License (MIT)
@@ -5217,7 +5143,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## react-dom
 
     MIT License
@@ -5242,8 +5167,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## react-hook-form
 
     MIT License
@@ -5268,7 +5191,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## react-hot-loader
 
     MIT License
@@ -5293,8 +5215,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## react-i18next
 
     The MIT License (MIT)
@@ -5319,7 +5239,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## react-intl
 
     Copyright 2019 Oath Inc.
@@ -5398,13 +5317,10 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## react-resizable-panels
 
     License: MIT
 
->>>>>>> 48e9ad314 (bootstrap)
 ## react-router-dom
 
     MIT License
@@ -5500,8 +5416,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## recharts
 
     The MIT License (MIT)
@@ -5526,7 +5440,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## redux
 
     The MIT License (MIT)
@@ -5774,8 +5687,6 @@ Signal Desktop makes use of the following open source projects.
     ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
     IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## sonner
 
     MIT License
@@ -5800,7 +5711,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## split2
 
     Copyright (c) 2014-2018, Matteo Collina <hello@matteocollina.com>
@@ -5817,8 +5727,6 @@ Signal Desktop makes use of the following open source projects.
     ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR
     IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## tailwind-merge
 
     MIT License
@@ -5867,7 +5775,6 @@ Signal Desktop makes use of the following open source projects.
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
     SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## tinykeys
 
     MIT License
@@ -5954,8 +5861,6 @@ Signal Desktop makes use of the following open source projects.
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-<<<<<<< HEAD
-=======
 ## vaul
 
     MIT License
@@ -5968,7 +5873,6 @@ Signal Desktop makes use of the following open source projects.
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
->>>>>>> 48e9ad314 (bootstrap)
 ## websocket
 
     Apache License
