@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "include": ["ts/**/*", "app/**/*", "package.json", "build/intl-linter/**/*", "next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "tailwind.config.cjs","global.d.ts"], 
 
   "compilerOptions": {
@@ -251,4 +252,77 @@
     }
   },
   "exclude": ["node_modules"]
+=======
+  "include": [
+    "ts/**/*",
+    "app/**/*",
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "global.d.ts"
+  ],
+  "exclude": ["node_modules"],
+
+  "compilerOptions": {
+    /* Basic */
+    "target": "ES2021",
+    "module": "ES2022",
+    "lib": ["DOM", "DOM.Iterable", "ES2022", "ESNext.Disposable"],
+
+    /* JSX / React */
+    "jsx": "react-jsx",                     // New automatic transform
+    "jsxImportSource": "react",             // (optional) if you ever use a custom JSX factory
+
+    /* Type Checking */
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "strictBindCallApply": true,
+    "noImplicitThis": true,
+    "alwaysStrict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedIndexedAccess": false,
+    "noImplicitOverride": true,
+
+    /* Module Resolution */
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "allowUmdGlobalAccess": true,
+
+    /* Emit */
+    "noEmit": true,
+    "sourceMap": true,
+
+    /* Incremental / Composite (for monorepos or project refs) */
+    "incremental": true,
+    "composite": true,
+
+    /* Paths & Aliases */
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    },
+
+    /* Type roots and definitions */
+    "typeRoots": ["node_modules/@types", "./global.d.ts"],
+    "types": ["react", "react-dom"],
+
+    /* Misc */
+    "allowJs": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true
+  },
+
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+>>>>>>> 48e9ad314 (bootstrap)
 }

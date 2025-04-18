@@ -25,8 +25,16 @@ import type { CallStateType } from '../state/selectors/calling';
 import type { StartCallData } from './ConfirmLeaveCallModal';
 import { I18n } from './I18n';
 
+<<<<<<< HEAD
 enum FilterTabSidebarView {
    View,
+=======
+// Make sure this path matches your project structure:
+import { FilterTabView } from './FilterTabView';
+
+enum FilterTabSidebarView {
+  View,
+>>>>>>> 48e9ad314 (bootstrap)
   NewCallView,
 }
 
@@ -34,6 +42,7 @@ type FilterTabProps = Readonly<{
   activeCall: ActiveCallStateType | undefined;
   allConversations: ReadonlyArray<ConversationType>;
   otherTabsUnreadStats: UnreadStats;
+<<<<<<< HEAD
   getCallHistoryGroupsCount: (
     options: CallHistoryFilterOptions
   ) => Promise<number>;
@@ -41,6 +50,13 @@ type FilterTabProps = Readonly<{
     options: CallHistoryFilterOptions,
     pagination: CallHistoryPagination
   ) => Promise<Array<CallHistoryGroup>>;
+=======
+  getCallHistoryGroupsCount: (options: CallHistoryFilterOptions) => Promise<number>;
+  getCallHistoryGroups: (
+    options: CallHistoryFilterOptions,
+    pagination: CallHistoryPagination
+  ) => Promise<CallHistoryGroup[]>;
+>>>>>>> 48e9ad314 (bootstrap)
   callHistoryEdition: number;
   getAdhocCall: (roomId: string) => CallStateType | undefined;
   getCall: (id: string) => CallStateType | undefined;
@@ -54,6 +70,7 @@ type FilterTabProps = Readonly<{
   navTabsCollapsed: boolean;
   onClearCallHistory: () => void;
   onMarkCallHistoryRead: (conversationId: string, callId: string) => void;
+<<<<<<< HEAD
   onToggleNavTabsCollapse: (navTabsCollapsed: boolean) => void;
   onCreateCallLink: () => void;
   onOutgoingAudioCallInConversation: (conversationId: string) => void;
@@ -63,10 +80,24 @@ type FilterTabProps = Readonly<{
   renderCallLinkDetails: (
     roomId: string,
     callHistoryGroup: CallHistoryGroup,
+=======
+  onToggleNavTabsCollapse: (collapsed: boolean) => void;
+  onCreateCallLink: () => void;
+  onOutgoingAudioCallInConversation: (conversationId: string) => void;
+  onOutgoingVideoCallInConversation: (conversationId: string) => void;
+  peekNotConnectedGroupCall: (
+    options: PeekNotConnectedGroupCallType
+  ) => void;
+  preferredLeftPaneWidth: number;
+  renderCallLinkDetails: (
+    roomId: string,
+    group: CallHistoryGroup,
+>>>>>>> 48e9ad314 (bootstrap)
     onClose: () => void
   ) => JSX.Element;
   renderConversationDetails: (
     conversationId: string,
+<<<<<<< HEAD
     callHistoryGroup: CallHistoryGroup | null
   ) => JSX.Element;
   renderToastManager: (_: {
@@ -76,10 +107,22 @@ type FilterTabProps = Readonly<{
   savePreferredLeftPaneWidth: (preferredLeftPaneWidth: number) => void;
   startCallLinkLobbyByRoomId: (options: { roomId: string }) => void;
   toggleConfirmLeaveCallModal: (options: StartCallData | null) => void;
+=======
+    group: CallHistoryGroup | null
+  ) => JSX.Element;
+  renderToastManager: (opts: {
+    containerWidthBreakpoint: WidthBreakpoint;
+  }) => JSX.Element;
+  regionCode: string | undefined;
+  savePreferredLeftPaneWidth: (width: number) => void;
+  startCallLinkLobbyByRoomId: (opts: { roomId: string }) => void;
+  toggleConfirmLeaveCallModal: (opts: StartCallData | null) => void;
+>>>>>>> 48e9ad314 (bootstrap)
   togglePip: () => void;
 }>;
 
 export type FilterTabSelectedView =
+<<<<<<< HEAD
   | {
       type: 'conversation';
       conversationId: string;
@@ -90,6 +133,10 @@ export type FilterTabSelectedView =
       roomId: string;
       callHistoryGroup: CallHistoryGroup;
     };
+=======
+  | { type: 'conversation'; conversationId: string; callHistoryGroup: CallHistoryGroup | null }
+  | { type: 'callLink'; roomId: string; callHistoryGroup: CallHistoryGroup };
+>>>>>>> 48e9ad314 (bootstrap)
 
 export function FilterTab({
   activeCall,
@@ -125,6 +172,7 @@ export function FilterTab({
   toggleConfirmLeaveCallModal,
   togglePip,
 }: FilterTabProps): JSX.Element {
+<<<<<<< HEAD
   const [sidebarView, setSidebarView] = useState(
     FilterTabSidebarView. View
   );
@@ -141,18 +189,35 @@ export function FilterTab({
     (nextSelected: FilterTabSelectedView | null) => {
       setSelectedViewInner(nextSelected);
       setSelectedViewKey(key => key + 1);
+=======
+  const [sidebarView, setSidebarView] = useState(FilterTabSidebarView.View);
+  const [selectedView, setSelectedViewInner] = useState<FilterTabSelectedView | null>(null);
+  const [selectedViewKey, setSelectedViewKey] = useState(() => 1);
+  const [confirmClearCallHistoryDialogOpen, setConfirmClearCallHistoryDialogOpen] = useState(false);
+
+  const updateSelectedView = useCallback(
+    (next: FilterTabSelectedView | null) => {
+      setSelectedViewInner(next);
+      setSelectedViewKey((k) => k + 1);
+>>>>>>> 48e9ad314 (bootstrap)
     },
     []
   );
 
   const updateSidebarView = useCallback(
+<<<<<<< HEAD
     (newSidebarView: FilterTabSidebarView) => {
       setSidebarView(newSidebarView);
+=======
+    (view: FilterTabSidebarView) => {
+      setSidebarView(view);
+>>>>>>> 48e9ad314 (bootstrap)
       updateSelectedView(null);
     },
     [updateSelectedView]
   );
 
+<<<<<<< HEAD
   const onCloseSelectedView = useCallback(() => {
     updateSelectedView(null);
   }, [updateSelectedView]);
@@ -187,13 +252,52 @@ export function FilterTab({
       updateSidebarView(FilterTabSidebarView. View);
     },
     [updateSidebarView, onOutgoingVideoCallInConversation]
+=======
+  const onCloseSelectedView = useCallback(() => updateSelectedView(null), [updateSelectedView]);
+
+  useEscapeHandling(
+    sidebarView === FilterTabSidebarView.NewCallView
+      ? () => updateSidebarView(FilterTabSidebarView.View)
+      : undefined
+  );
+
+  const handleOpenClearCallHistoryDialog = useCallback(
+    () => setConfirmClearCallHistoryDialogOpen(true),
+    []
+  );
+  const handleCloseClearCallHistoryDialog = useCallback(
+    () => setConfirmClearCallHistoryDialogOpen(false),
+    []
+  );
+
+  const handleOutgoingAudioCall = useCallback(
+    (cid: string) => {
+      onOutgoingAudioCallInConversation(cid);
+      updateSidebarView(FilterTabSidebarView.View);
+    },
+    [onOutgoingAudioCallInConversation, updateSidebarView]
+  );
+
+  const handleOutgoingVideoCall = useCallback(
+    (cid: string) => {
+      onOutgoingVideoCallInConversation(cid);
+      updateSidebarView(FilterTabSidebarView.View);
+    },
+    [onOutgoingVideoCallInConversation, updateSidebarView]
+>>>>>>> 48e9ad314 (bootstrap)
   );
 
   useEffect(() => {
     if (selectedView?.type === 'conversation') {
+<<<<<<< HEAD
       selectedView.callHistoryGroup?.children.forEach(child => {
         onMarkCallHistoryRead(selectedView.conversationId, child.callId);
       });
+=======
+      selectedView.callHistoryGroup?.children.forEach((c) =>
+        onMarkCallHistoryRead(selectedView.conversationId, c.callId)
+      );
+>>>>>>> 48e9ad314 (bootstrap)
     }
   }, [selectedView, onMarkCallHistoryRead]);
 
@@ -203,8 +307,14 @@ export function FilterTab({
         <NavSidebar
           i18n={i18n}
           title={
+<<<<<<< HEAD
             sidebarView === FilterTabSidebarView. View
               ? i18n('icu:FilterTab__HeaderTitle')
+=======
+            sidebarView === FilterTabSidebarView.View
+              ? i18n('icu:FilterTab__HeaderTitle')
+              : ''
+>>>>>>> 48e9ad314 (bootstrap)
           }
           otherTabsUnreadStats={otherTabsUnreadStats}
           hasFailedStorySends={hasFailedStorySends}
@@ -212,9 +322,13 @@ export function FilterTab({
           navTabsCollapsed={navTabsCollapsed}
           onBack={
             sidebarView === FilterTabSidebarView.NewCallView
+<<<<<<< HEAD
               ? () => {
                   updateSidebarView(FilterTabSidebarView. View);
                 }
+=======
+              ? () => updateSidebarView(FilterTabSidebarView.View)
+>>>>>>> 48e9ad314 (bootstrap)
               : null
           }
           onToggleNavTabsCollapse={onToggleNavTabsCollapse}
@@ -223,6 +337,7 @@ export function FilterTab({
           savePreferredLeftPaneWidth={savePreferredLeftPaneWidth}
           renderToastManager={renderToastManager}
           actions={
+<<<<<<< HEAD
             <>
               {sidebarView === FilterTabSidebarView. View && (
                 <>
@@ -268,6 +383,50 @@ export function FilterTab({
           {sidebarView === FilterTabSidebarView. View && (
             < 
               key={FilterTabSidebarView. View}
+=======
+            sidebarView === FilterTabSidebarView.View && (
+              <>
+                <NavSidebarActionButton
+                  icon={<span className="FilterTab__NewCallActionIcon" />}  
+                  label={i18n('icu:FilterTab__NewCallActionLabel')}
+                  onClick={() => updateSidebarView(FilterTabSidebarView.NewCallView)}
+                />
+                <ContextMenu
+                  i18n={i18n}
+                  menuOptions={[
+                    {
+                      icon: 'FilterTab__ClearCallHistoryIcon',
+                      label: i18n('icu:FilterTab__ClearCallHistoryLabel'),
+                      onClick: handleOpenClearCallHistoryDialog,
+                    },
+                  ]}
+                  popperOptions={{ placement: 'bottom', strategy: 'absolute' }}
+                  portalToRoot
+                >
+                  {(
+                    { onClick, onKeyDown, ref }: {
+                      onClick: React.MouseEventHandler<HTMLButtonElement>;
+                      onKeyDown: React.KeyboardEventHandler<HTMLButtonElement>;
+                      ref: React.Ref<HTMLButtonElement>;
+                    }
+                  ) => (
+                    <NavSidebarActionButton
+                      ref={ref}
+                      onClick={onClick}
+                      onKeyDown={onKeyDown}
+                      icon={<span className="FilterTab__MoreActionsIcon" />}
+                      label={i18n('icu:FilterTab__MoreActionsLabel')}
+                    />
+                  )}
+                </ContextMenu>
+              </>
+            )
+          }
+        >
+          {sidebarView === FilterTabSidebarView.View && (
+            <FilterTabView
+              key={FilterTabSidebarView.View}
+>>>>>>> 48e9ad314 (bootstrap)
               activeCall={activeCall}
               getCallHistoryGroupsCount={getCallHistoryGroupsCount}
               getCallHistoryGroups={getCallHistoryGroups}
@@ -281,12 +440,17 @@ export function FilterTab({
               selectedCallHistoryGroup={selectedView?.callHistoryGroup ?? null}
               onChangeFilterTabSelectedView={updateSelectedView}
               onCreateCallLink={onCreateCallLink}
+<<<<<<< HEAD
               onOutgoingAudioCallInConversation={
                 handleOutgoingAudioCallInConversation
               }
               onOutgoingVideoCallInConversation={
                 handleOutgoingVideoCallInConversation
               }
+=======
+              onOutgoingAudioCallInConversation={handleOutgoingAudioCall}
+              onOutgoingVideoCallInConversation={handleOutgoingVideoCall}
+>>>>>>> 48e9ad314 (bootstrap)
               peekNotConnectedGroupCall={peekNotConnectedGroupCall}
               startCallLinkLobbyByRoomId={startCallLinkLobbyByRoomId}
               toggleConfirmLeaveCallModal={toggleConfirmLeaveCallModal}
@@ -296,6 +460,7 @@ export function FilterTab({
           {sidebarView === FilterTabSidebarView.NewCallView && (
             <CallsNewCall
               key={FilterTabSidebarView.NewCallView}
+<<<<<<< HEAD
               hasActiveCall={activeCall != null}
               allConversations={allConversations}
               i18n={i18n}
@@ -311,12 +476,27 @@ export function FilterTab({
           )}
         </NavSidebar>
         {selectedView == null ? (
+=======
+              hasActiveCall={!!activeCall}
+              allConversations={allConversations}
+              i18n={i18n}
+              regionCode={regionCode}
+              onChangeCallsTabSelectedView={updateSelectedView}
+              onOutgoingAudioCallInConversation={handleOutgoingAudioCall}
+              onOutgoingVideoCallInConversation={handleOutgoingVideoCall}
+            />
+          )}
+        </NavSidebar>
+
+        {selectedView === null ? (
+>>>>>>> 48e9ad314 (bootstrap)
           <div className="FilterTab__EmptyState">
             <div className="FilterTab__EmptyStateIcon" />
             <p className="FilterTab__EmptyStateLabel">
               <I18n
                 i18n={i18n}
                 id="icu:FilterTab__EmptyStateText--with-icon-2"
+<<<<<<< HEAD
                 components={{
                   // eslint-disable-next-line react/no-unstable-nested-components
                   newCallButtonIcon: () => {
@@ -328,10 +508,14 @@ export function FilterTab({
                     );
                   },
                 }}
+=======
+                components={{ newCallButtonIcon: () => <span className="FilterTab__EmptyState__ActionIcon" aria-label={i18n('icu:FilterTab__NewCallActionLabel')} />} }
+>>>>>>> 48e9ad314 (bootstrap)
               />
             </p>
           </div>
         ) : (
+<<<<<<< HEAD
           <div
             className="FilterTab__ConversationCallDetails"
             // Force scrolling to top when selection changes
@@ -351,12 +535,23 @@ export function FilterTab({
           </div>
         )}
       </div>
+=======
+          <div className="FilterTab__ConversationCallDetails" key={selectedViewKey}>
+            {selectedView.type === 'conversation'
+              ? renderConversationDetails(selectedView.conversationId, selectedView.callHistoryGroup)
+              : renderCallLinkDetails(selectedView.roomId, selectedView.callHistoryGroup, onCloseSelectedView)}
+          </div>
+        )}
+      </div>
+
+>>>>>>> 48e9ad314 (bootstrap)
       {confirmClearCallHistoryDialogOpen && (
         <ConfirmationDialog
           dialogName="FilterTab__ConfirmClearCallHistory"
           i18n={i18n}
           onClose={handleCloseClearCallHistoryDialog}
           title={i18n('icu:FilterTab__ConfirmClearCallHistory__Title')}
+<<<<<<< HEAD
           actions={[
             {
               style: 'negative',
@@ -366,6 +561,13 @@ export function FilterTab({
               action: onClearCallHistory,
             },
           ]}
+=======
+          actions={[{
+            style: 'negative',
+            text: i18n('icu:FilterTab__ConfirmClearCallHistory__ConfirmButton'),
+            action: onClearCallHistory
+          }]}
+>>>>>>> 48e9ad314 (bootstrap)
         >
           {hasAnyAdminCallLinks
             ? i18n('icu:FilterTab__ConfirmClearCallHistory__Body--call-links')
@@ -374,4 +576,8 @@ export function FilterTab({
       )}
     </>
   );
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 48e9ad314 (bootstrap)
