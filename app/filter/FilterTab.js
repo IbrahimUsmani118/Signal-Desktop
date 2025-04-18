@@ -1,5 +1,4 @@
 "use strict";
-"use client";
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -30,231 +29,194 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var FilterTab_exports = {};
 __export(FilterTab_exports, {
-  FilterTab: () => FilterTab
+  handleImageAttachment: () => handleImageAttachment,
+  handleTextMessage: () => handleTextMessage,
+  initializeFilter: () => initializeFilter,
+  isGlobalDuplicate: () => isGlobalDuplicate,
+  isLocalDuplicate: () => isLocalDuplicate,
+  loadFilterSettings: () => loadFilterSettings,
+  loadFilterStats: () => loadFilterStats,
+  registerFilterService: () => registerFilterService,
+  saveFilterSettings: () => saveFilterSettings,
+  saveFilterStats: () => saveFilterStats,
+  saveToGlobalStore: () => saveToGlobalStore
 });
 module.exports = __toCommonJS(FilterTab_exports);
-var import_jsx_runtime = require("react/jsx-runtime");
-var import_react = require("react");
 var import_client_dynamodb = require("@aws-sdk/client-dynamodb");
 var import_lib_dynamodb = require("@aws-sdk/lib-dynamodb");
 var crypto = __toESM(require("crypto"));
-var import_react_redux = require("react-redux");
 var import_imageHash = require("./imageHash");
-var import_conversations = require("../state/selectors/conversations");
+var import_buffer = require("buffer");
 const REGION = "us-east-1";
 const TABLE_NAME = "SignalContentHashes";
 const client = new import_client_dynamodb.DynamoDBClient({ region: REGION });
 const docClient = import_lib_dynamodb.DynamoDBDocumentClient.from(client);
-const FilterTab = /* @__PURE__ */ __name(({ i18n }) => {
-  const [isEnabled, setIsEnabled] = (0, import_react.useState)(true);
-  const [isGlobalEnabled, setIsGlobalEnabled] = (0, import_react.useState)(true);
-  const [stats, setStats] = (0, import_react.useState)({
-    imagesBlocked: 0,
-    textsBlocked: 0,
-    videosBlocked: 0
-  });
-  const conversations = (0, import_react_redux.useSelector)(import_conversations.getConversations);
-  (0, import_react.useEffect)(() => {
-    const loadSettings = /* @__PURE__ */ __name(async () => {
-      try {
-        const settings = await window.Signal.Data.getFilterSettings();
-        if (settings) {
-          setIsEnabled(settings.isEnabled);
-          setIsGlobalEnabled(settings.isGlobalEnabled);
-        }
-      } catch (err) {
-        console.error("Failed to load filter settings:", err);
+let settings = { isEnabled: true, isGlobalEnabled: true };
+let stats = { imagesBlocked: 0, textsBlocked: 0, videosBlocked: 0 };
+async function loadFilterSettings() {
+  try {
+    const saved = await window.Signal.Data.getFilterSettings();
+    if (saved) {
+      settings = {
+        isEnabled: saved.isEnabled,
+        isGlobalEnabled: saved.isGlobalEnabled
+      };
+    }
+  } catch (err) {
+    console.error("Failed to load filter settings:", err);
+  }
+  return settings;
+}
+__name(loadFilterSettings, "loadFilterSettings");
+async function loadFilterStats() {
+  try {
+    const saved = await window.Signal.Data.getFilterStats();
+    if (saved) {
+      stats = saved;
+    }
+  } catch (err) {
+    console.error("Failed to load filter stats:", err);
+  }
+  return stats;
+}
+__name(loadFilterStats, "loadFilterStats");
+async function saveFilterSettings(newSettings) {
+  settings = newSettings;
+  try {
+    await window.Signal.Data.saveFilterSettings(settings);
+  } catch (err) {
+    console.error("Failed to save filter settings:", err);
+  }
+}
+__name(saveFilterSettings, "saveFilterSettings");
+async function saveFilterStats(newStats) {
+  stats = newStats;
+  try {
+    await window.Signal.Data.saveFilterStats(stats);
+  } catch (err) {
+    console.error("Failed to save filter stats:", err);
+  }
+}
+__name(saveFilterStats, "saveFilterStats");
+async function isLocalDuplicate(contentHash, _contentType) {
+  try {
+    const result = await window.Signal.Data.getContentHashByHash(contentHash);
+    return !!result;
+  } catch (err) {
+    console.error("Error checking local duplicate:", err);
+    return false;
+  }
+}
+__name(isLocalDuplicate, "isLocalDuplicate");
+async function isGlobalDuplicate(contentHash, _contentType) {
+  if (!settings.isGlobalEnabled) return false;
+  try {
+    const params = {
+      TableName: TABLE_NAME,
+      KeyConditionExpression: "contentHash = :hash",
+      ExpressionAttributeValues: { ":hash": contentHash }
+    };
+    const { Items } = await docClient.send(new import_lib_dynamodb.QueryCommand(params));
+    return Array.isArray(Items) && Items.length > 0;
+  } catch (err) {
+    console.error("Error checking global duplicate:", err);
+    return false;
+  }
+}
+__name(isGlobalDuplicate, "isGlobalDuplicate");
+async function saveToGlobalStore(contentHash, _contentType) {
+  if (!settings.isGlobalEnabled) return;
+  try {
+    const params = {
+      TableName: TABLE_NAME,
+      Item: {
+        contentHash,
+        timestamp: (/* @__PURE__ */ new Date()).toISOString(),
+        deviceId: window.textsecure.storage.user.getDeviceId(),
+        userId: window.textsecure.storage.user.getNumber()
       }
-    }, "loadSettings");
-    const loadStats = /* @__PURE__ */ __name(async () => {
-      try {
-        const saved = await window.Signal.Data.getFilterStats();
-        if (saved) setStats(saved);
-      } catch (err) {
-        console.error("Failed to load filter stats:", err);
-      }
-    }, "loadStats");
-    loadSettings();
-    loadStats();
-  }, []);
-  (0, import_react.useEffect)(() => {
-    const saveSettings = /* @__PURE__ */ __name(async () => {
-      try {
-        await window.Signal.Data.saveFilterSettings({
-          isEnabled,
-          isGlobalEnabled
-        });
-      } catch (err) {
-        console.error("Failed to save filter settings:", err);
-      }
-    }, "saveSettings");
-    saveSettings();
-  }, [isEnabled, isGlobalEnabled]);
-  const isLocalDuplicate = /* @__PURE__ */ __name(async (contentHash, _contentType) => {
-    try {
-      const result = await window.Signal.Data.getContentHashByHash(contentHash);
-      return !!result;
-    } catch (err) {
-      console.error("Error checking local duplicate:", err);
+    };
+    await docClient.send(new import_lib_dynamodb.PutCommand(params));
+  } catch (err) {
+    console.error("Error saving to global store:", err);
+  }
+}
+__name(saveToGlobalStore, "saveToGlobalStore");
+async function handleImageAttachment(attachment) {
+  if (!settings.isEnabled) return true;
+  try {
+    const buf = import_buffer.Buffer.from(attachment.data);
+    const imageHash = await (0, import_imageHash.getImageHash)(buf);
+    const localDup = await isLocalDuplicate(imageHash, "image");
+    const globalDup = await isGlobalDuplicate(imageHash, "image");
+    if (localDup || globalDup) {
+      const updated = { ...stats, imagesBlocked: stats.imagesBlocked + 1 };
+      await saveFilterStats(updated);
       return false;
     }
-  }, "isLocalDuplicate");
-  const isGlobalDuplicate = /* @__PURE__ */ __name(async (contentHash, _contentType) => {
-    if (!isGlobalEnabled) return false;
-    try {
-      const params = {
-        TableName: TABLE_NAME,
-        KeyConditionExpression: "contentHash = :hash",
-        ExpressionAttributeValues: { ":hash": contentHash }
-      };
-      const { Items } = await docClient.send(new import_lib_dynamodb.QueryCommand(params));
-      return Items != null && Items.length > 0;
-    } catch (err) {
-      console.error("Error checking global duplicate:", err);
+    await window.Signal.Data.saveContentHash({
+      hash: imageHash,
+      contentType: "image",
+      timestamp: Date.now()
+    });
+    await saveToGlobalStore(imageHash, "image");
+    return true;
+  } catch (err) {
+    console.error("Error in image filter:", err);
+    return true;
+  }
+}
+__name(handleImageAttachment, "handleImageAttachment");
+async function handleTextMessage(text) {
+  if (!settings.isEnabled || text.length < 5) return true;
+  try {
+    const textHash = crypto.createHash("sha256").update(text).digest("hex");
+    const localDup = await isLocalDuplicate(textHash, "text");
+    const globalDup = await isGlobalDuplicate(textHash, "text");
+    if (localDup || globalDup) {
+      const updated = { ...stats, textsBlocked: stats.textsBlocked + 1 };
+      await saveFilterStats(updated);
       return false;
     }
-  }, "isGlobalDuplicate");
-  const saveToGlobalStore = /* @__PURE__ */ __name(async (contentHash, _contentType) => {
-    if (!isGlobalEnabled) return;
-    try {
-      const params = {
-        TableName: TABLE_NAME,
-        Item: {
-          contentHash,
-          timestamp: (/* @__PURE__ */ new Date()).toISOString(),
-          deviceId: window.textsecure.storage.user.getDeviceId(),
-          userId: window.textsecure.storage.user.getNumber()
-        }
-      };
-      await docClient.send(new import_lib_dynamodb.PutCommand(params));
-    } catch (err) {
-      console.error("Error saving to global store:", err);
-    }
-  }, "saveToGlobalStore");
-  const handleImageAttachment = /* @__PURE__ */ __name(async (attachment) => {
-    if (!isEnabled) return true;
-    try {
-      const imageHash = await (0, import_imageHash.getImageHash)(attachment.data);
-      const localDup = await isLocalDuplicate(imageHash, "image");
-      const globalDup = await isGlobalDuplicate(imageHash, "image");
-      if (localDup || globalDup) {
-        const next = { ...stats, imagesBlocked: stats.imagesBlocked + 1 };
-        setStats(next);
-        await window.Signal.Data.saveFilterStats(next);
-        return false;
-      }
-      await window.Signal.Data.saveContentHash({
-        hash: imageHash,
-        contentType: "image",
-        timestamp: Date.now()
-      });
-      await saveToGlobalStore(imageHash, "image");
-      return true;
-    } catch {
-      return true;
-    }
-  }, "handleImageAttachment");
-  const handleTextMessage = /* @__PURE__ */ __name(async (text) => {
-    if (!isEnabled || !text || text.length < 5) return true;
-    try {
-      const textHash = crypto.createHash("sha256").update(text).digest("hex");
-      const localDup = await isLocalDuplicate(textHash, "text");
-      const globalDup = await isGlobalDuplicate(textHash, "text");
-      if (localDup || globalDup) {
-        const next = { ...stats, textsBlocked: stats.textsBlocked + 1 };
-        setStats(next);
-        await window.Signal.Data.saveFilterStats(next);
-        return false;
-      }
-      await window.Signal.Data.saveContentHash({
-        hash: textHash,
-        contentType: "text",
-        timestamp: Date.now()
-      });
-      await saveToGlobalStore(textHash, "text");
-      return true;
-    } catch {
-      return true;
-    }
-  }, "handleTextMessage");
-  (0, import_react.useEffect)(() => {
-    if (window.Signal?.Services) {
-      ;
-      window.Signal.Services.filterService = {
-        handleImageAttachment,
-        handleTextMessage
-      };
-    }
-  }, [isEnabled, isGlobalEnabled]);
-  return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { className: "module-filter-tab", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime.jsx)("header", { className: "module-filter-tab__header", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h2", { children: i18n("icu:FilterTab__title") }) }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "module-filter-tab__settings", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "input",
-          {
-            type: "checkbox",
-            checked: isEnabled,
-            onChange: () => setIsEnabled((e) => !e)
-          }
-        ),
-        i18n("icu:FilterTab__enableFilter")
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-          "input",
-          {
-            type: "checkbox",
-            checked: isGlobalEnabled,
-            disabled: !isEnabled,
-            onChange: () => setIsGlobalEnabled((e) => !e)
-          }
-        ),
-        i18n("icu:FilterTab__enableGlobalFilter")
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: i18n("icu:FilterTab__globalFilterDescription") })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "module-filter-tab__stats", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: i18n("icu:FilterTab__stats") }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-        i18n("icu:FilterTab__imagesBlocked"),
-        ": ",
-        stats.imagesBlocked
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-        i18n("icu:FilterTab__textsBlocked"),
-        ": ",
-        stats.textsBlocked
-      ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", { children: [
-        i18n("icu:FilterTab__videosBlocked"),
-        ": ",
-        stats.videosBlocked
-      ] })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("section", { className: "module-filter-tab__conversations", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("h3", { children: i18n("icu:FilterTab__conversations") }),
-      /* @__PURE__ */ (0, import_jsx_runtime.jsx)("p", { children: i18n("icu:FilterTab__conversationsDescription") }),
-      conversations.map((c) => {
-        const excluded = c.filterExcluded ?? false;
-        return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("label", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
-            "input",
-            {
-              type: "checkbox",
-              checked: !excluded,
-              onChange: () => window.Signal.Data.updateConversation(c.id, {
-                filterExcluded: !excluded
-              })
-            }
-          ),
-          c.title || c.name || c.phoneNumber
-        ] }) }, c.id);
-      })
-    ] })
-  ] });
-}, "FilterTab");
+    await window.Signal.Data.saveContentHash({
+      hash: textHash,
+      contentType: "text",
+      timestamp: Date.now()
+    });
+    await saveToGlobalStore(textHash, "text");
+    return true;
+  } catch (err) {
+    console.error("Error in text filter:", err);
+    return true;
+  }
+}
+__name(handleTextMessage, "handleTextMessage");
+function registerFilterService() {
+  if (window.Signal?.Services) {
+    window.Signal.Services.filterService = {
+      handleImageAttachment,
+      handleTextMessage
+    };
+  }
+}
+__name(registerFilterService, "registerFilterService");
+async function initializeFilter() {
+  await loadFilterSettings();
+  await loadFilterStats();
+  registerFilterService();
+}
+__name(initializeFilter, "initializeFilter");
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  FilterTab
+  handleImageAttachment,
+  handleTextMessage,
+  initializeFilter,
+  isGlobalDuplicate,
+  isLocalDuplicate,
+  loadFilterSettings,
+  loadFilterStats,
+  registerFilterService,
+  saveFilterSettings,
+  saveFilterStats,
+  saveToGlobalStore
 });

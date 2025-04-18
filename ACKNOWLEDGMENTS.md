@@ -3186,6 +3186,7 @@ Signal Desktop makes use of the following open source projects.
     SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 ## electron
 
@@ -3211,6 +3212,8 @@ Signal Desktop makes use of the following open source projects.
     OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
     WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+=======
+>>>>>>> 5d9dcc506 (Message)
 ## embla-carousel-react
 
     License: MIT
