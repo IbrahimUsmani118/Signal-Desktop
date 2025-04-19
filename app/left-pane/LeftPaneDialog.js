@@ -34,9 +34,9 @@ function LeftPaneDialog({
 }) {
   switch (mode) {
     case import_LeftPaneMode.LeftPaneMode.INBOX_ARCHIVE:
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_InboxArchiveTab.InboxArchiveTab, {});
+      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_InboxArchiveTab.InboxArchiveTab, { i18n });
     case import_LeftPaneMode.LeftPaneMode.MESSAGE_REQUESTS:
-      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_MessageRequestsTab.MessageRequestsTab, {});
+      return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_MessageRequestsTab.MessageRequestsTab, { i18n });
     // ← your new filter case goes here
     case import_LeftPaneMode.LeftPaneMode.FILTER:
       return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(
